@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{8FB5876D-F94E-43C9-9150-3A654C772875}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{48389CE0-FED4-4570-820E-0AE527CDED4C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "modules", "modules", "{0EDAC266-2418-48EA-834E-51289D41ED71}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "commons", "commons", "{94996C67-2CE9-4F45-BC1A-5F0D2EA807E9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{0EDAC266-2418-48EA-834E-51289D41ED71} = {8FB5876D-F94E-43C9-9150-3A654C772875}
+		{94996C67-2CE9-4F45-BC1A-5F0D2EA807E9} = {8FB5876D-F94E-43C9-9150-3A654C772875}
+	EndGlobalSection
+EndGlobal
