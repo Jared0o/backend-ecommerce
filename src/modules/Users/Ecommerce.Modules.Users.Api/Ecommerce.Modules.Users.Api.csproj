@@ -2,6 +2,6 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\commons\Ecommerce.Commons.Abstraction\Ecommerce.Commons.Abstraction.csproj" />
     <ProjectReference Include="..\..\..\commons\Ecommerce.Commons.Infrastructure\Ecommerce.Commons.Infrastructure.csproj" />
+    <ProjectReference Include="..\Ecommerce.Modules.Users.Infrastructure\Ecommerce.Modules.Users.Infrastructure.csproj" />
   </ItemGroup>
-
 </Project>
