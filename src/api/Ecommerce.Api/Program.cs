@@ -25,6 +25,16 @@ builder.Services.AddOpenApiDocument(x =>
         Type = OpenApiSecuritySchemeType.ApiKey,
     });
 });
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll", policy =>
+    {
+        policy.AllowAnyOrigin()
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+    });
+});
 builder.Services.AddInfrastructure();
 await builder.Services.ApplyMigrations();
 
@@ -36,6 +46,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUi(x => x.DocExpansion = "list");
 }
 
+app.UseCors("AllowAll");
 app.MapGet("/", () => "It's Ecommerce API!");
 
 ModuleLoader.RegisterModules(modules, app);
