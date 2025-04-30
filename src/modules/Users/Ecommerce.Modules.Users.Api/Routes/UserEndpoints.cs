@@ -1,9 +1,9 @@
-﻿using Ecommerce.Commons.Abstraction.Helpers;
+﻿using Ecommerce.Commons.Infrastructure.Api;
 using Ecommerce.Modules.Users.Core.Commands.AddUser;
+using Ecommerce.Modules.Users.Core.Commands.Login;
 using Mediator;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 
@@ -14,26 +14,22 @@ public static class UserEndpoints
     public static RouteGroupBuilder MapUserEndpoints(this RouteGroupBuilder group)
     {
         group.MapPost("/register", CreateUser);
-        group.MapGet("/test", () => "Hello World");
+        group.MapPost("/login", LoginUser);
+        group.MapGet("/", () => "Its Users Module");
 
         return group;
     }
 
-    private static async Task<Results<NoContent, BadRequest<Error>, NotFound<Error>>> CreateUser([FromBody] RegisterUserDto userDto, [FromServices] ISender mediator)
+    private static async Task<IResult> CreateUser([FromBody] RegisterUserDto userDto, [FromServices] ISender mediator)
     {
         var res = await mediator.Send(new AddUserCommand(userDto));
 
-        if (res.IsSuccess)
-        {
-            return TypedResults.NoContent();
-        }
+        return res.IsSuccess ? Results.NoContent() : ApiResult.HandleError(res.Error);
+    }
+    private static async Task<IResult> LoginUser([FromBody] LoginDto loginDto, [FromServices] ISender mediator)
+    {
+        var res = await mediator.Send(new LoginCommand(loginDto));
 
-        return res.Error?.Type switch
-        {
-            ErrorType.NotFound => TypedResults.NotFound(res.Error),
-            ErrorType.ValidationError => TypedResults.BadRequest(res.Error),
-            ErrorType.Exception => TypedResults.BadRequest(res.Error),
-            _ => TypedResults.BadRequest(res.Error)
-        };
+        return res.IsSuccess ? Results.Ok(res.Value) : ApiResult.HandleError(res.Error);
     }
 }

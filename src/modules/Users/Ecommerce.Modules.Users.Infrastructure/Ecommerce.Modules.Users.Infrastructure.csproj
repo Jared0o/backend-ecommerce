@@ -2,4 +2,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Ecommerce.Modules.Users.Core\Ecommerce.Modules.Users.Core.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" />
+  </ItemGroup>
 </Project>

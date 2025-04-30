@@ -5,6 +5,7 @@
           <PrivateAssets>all</PrivateAssets>
           <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
+        <PackageReference Include="NSwag.AspNetCore" />
     </ItemGroup>
     <ItemGroup>
       <ProjectReference Include="..\..\modules\Users\Ecommerce.Modules.Users.Api\Ecommerce.Modules.Users.Api.csproj" />

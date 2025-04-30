@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Ecommerce.Modules.Users.Infrastructure.Migrations
 {
     [DbContext(typeof(UsersContext))]
-    [Migration("20250430074413_InitUsers")]
+    [Migration("20250430094101_InitUsers")]
     partial class InitUsers
     {
         /// <inheritdoc />
@@ -67,6 +67,7 @@ namespace Ecommerce.Modules.Users.Infrastructure.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("Email")
+                        .IsRequired()
                         .HasMaxLength(256)
                         .HasColumnType("character varying(256)");
 

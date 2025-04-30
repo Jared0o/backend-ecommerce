@@ -29,6 +29,5 @@ public class UserModule : IModule
         var serviceProvider = scope.ServiceProvider;
         ApplyUsersMigration.ApplyMigrations(serviceProvider).GetAwaiter().GetResult();
         DataSeeder.SeedRoleAsync(serviceProvider).GetAwaiter().GetResult();
-        
     }
 }
