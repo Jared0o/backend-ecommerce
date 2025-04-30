@@ -2,7 +2,7 @@
 
 namespace Ecommerce.Modules.Users.Core.Models;
 
-public class User : IdentityUser<string>
+public class User : IdentityUser<Guid>
 {
     
 }

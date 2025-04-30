@@ -3,5 +3,8 @@
     <ProjectReference Include="..\..\..\commons\Ecommerce.Commons.Abstraction\Ecommerce.Commons.Abstraction.csproj" />
     <ProjectReference Include="..\..\..\commons\Ecommerce.Commons.Infrastructure\Ecommerce.Commons.Infrastructure.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Repositories\" />
+  </ItemGroup>
 
 </Project>

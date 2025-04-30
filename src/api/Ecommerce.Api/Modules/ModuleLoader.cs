@@ -28,4 +28,24 @@ internal static class ModuleLoader
 
         return modules;
     }
+    
+    public static void RegisterModules(IEnumerable<IModule> modules, WebApplication app)
+    {
+        foreach (var module in modules)
+        {
+            if (!module.IsEnabled) continue;
+            var group = app.MapGroup($"/{module.RoutePrefix}").WithTags(module.Name);
+            module.RegisterEndpoints(group);
+            module.RegisterMiddlewares(app);
+        }
+    }
+    
+    public static void RegisterModuleServices(IEnumerable<IModule> modules, IServiceCollection services, IConfiguration configuration)
+    {
+        foreach (var module in modules)
+        {
+            if (!module.IsEnabled) continue;
+            module.RegisterServices(services, configuration);
+        }
+    }
 }

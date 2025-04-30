@@ -1,19 +1,17 @@
 using Ecommerce.Api.Modules;
 using Ecommerce.Commons.Infrastructure;
+using Ecommerce.Modules.Users.Infrastructure;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 var modules = ModuleLoader.LoadModules();
 
-foreach (var module in modules)
-{
-    if (module.IsEnabled)
-    {
-        module.RegisterServices(builder.Services);
-    }
-}
+ModuleLoader.RegisterModuleServices(modules, builder.Services, builder.Configuration);
 
+builder.Services.AddAuthentication();
 builder.Services.AddOpenApi();
 builder.Services.AddInfrastructure();
+await builder.Services.ApplyMigrations();
 
 var app = builder.Build();
 
@@ -24,13 +22,6 @@ if (app.Environment.IsDevelopment())
 
 app.MapGet("/", () => "It's Ecommerce API!");
 
-foreach (var module in modules)
-{
-     if(module.IsEnabled)
-     {
-         var group = app.MapGroup($"/{module.RoutePrefix}").WithTags(module.Name);
-         module.RegisterEndpoints(group);
-     }
-}
+ModuleLoader.RegisterModules(modules, app);
 
 await app.RunAsync();
